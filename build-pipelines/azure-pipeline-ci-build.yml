@@ -1,0 +1,17 @@
+steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Perform Installing Nuget Tool'
+
+- task: NuGetCommand@2
+  displayName: 'Preparing NuGet Restore'
+  inputs:
+    restoreSolution: 'BasicCompany.sln'
+    feedsToUse: config
+    nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
+
+- task: VSBuild@1
+  displayName: 'Preparing Build Solution'
+  inputs:
+    solution: 'BasicCompany.sln'
+    configuration: Release
+    platform: 'Any CPU'

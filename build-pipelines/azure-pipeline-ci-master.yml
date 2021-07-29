@@ -1,0 +1,19 @@
+name: $(BuildID)
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+  
+variables:
+- group: 'Build Pipeline Variables'
+- name: container_registry
+  value: gecu-acr
+- name: REGISTRY
+  value: gecudevacr.azurecr.io/
+- name: Build_Environment
+  value: Develop
+
+steps:
+- template: azure-pipeline-ci-build.yml
